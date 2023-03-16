@@ -6,11 +6,10 @@ function fetchCountries(name) {
     fields: 'name,capital,population,flags,languages',
   });
 
-   return fetch(`${BASE_URL}${name}?${searchParams}`)
-     .then(response => response.json())
-     .then(data => data)
-     .catch(error => {
-       console.error(error);
-     });
+  return fetch(`${BASE_URL}${name}?${searchParams}`)
+    .then(response => response.json())
+    .then((data) => data)
+    .catch(error => {
+      console.error(error);
+    });
 }
-
