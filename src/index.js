@@ -20,9 +20,11 @@ function onSearch(e) {
     return;
   }
   clearContainer(listEl);
-  fetchCountries(name).then(renderList).catch(error => {
-    Notiflix.Notify.failure('Oops, there is no country with that name');
-  })
+  fetchCountries(name)
+    .then(renderList)
+    .catch(error => {
+      Notiflix.Notify.failure('Oops, there is no country with that name');
+    });
 }
 
 function renderList(data) {
@@ -48,10 +50,12 @@ function renderList(data) {
       .map(({ name, flags, population, capital, languages }) => {
         return `<h1> <img src="${flags.svg}" alt="${
           flags.alt
-        }" width="100" height="60"> ${name.common} </h1>
-      <p> Capital: ${capital} </P>
-      <p> Population: ${population}</P>
-      <p> Languages: ${Object.values(languages)} </P>
+        }" width="40" height="20"> ${name.common} </h1>
+      <p> <span class="country-data">Capital:</span> ${capital} </P>
+      <p> <span class="country-data">Population:</span> ${population}</P>
+      <p> <span class="country-data">Languages:</span> ${Object.values(
+        languages
+      )} </P>
     `;
       })
       .join('');
