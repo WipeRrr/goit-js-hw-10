@@ -14,9 +14,15 @@ inputEL.addEventListener('input', debounce(onSearch, DEBOUNCE_DELAY));
 function onSearch(e) {
   e.preventDefault();
   const name = e.target.value.trim();
-
+  if (name === '') {
+    clearContainer(listEl);
+    clearContainer(countryInfoEl);
+    return;
+  }
   clearContainer(listEl);
-  fetchCountries(name).then(renderList);
+  fetchCountries(name).then(renderList).catch(error => {
+    Notiflix.Notify.failure('Oops, there is no country with that name');
+  })
 }
 
 function renderList(data) {
@@ -26,7 +32,7 @@ function renderList(data) {
     );
     return;
   }
-   clearContainer(countryInfoEl);
+  clearContainer(countryInfoEl);
   const markupList = data
     .map(({ name, flags }) => {
       return `<li><img src="${flags.png}" alt="${flags.alt}" width="60" height="40">${name.common}</li>`;
@@ -40,10 +46,12 @@ function renderList(data) {
     clearContainer(countryInfoEl);
     const markupInfo = data
       .map(({ name, flags, population, capital, languages }) => {
-        return `<h1> <img src="${flags.svg}" alt="${flags.alt}" width="100" height="60"> ${name.common} </h1>
+        return `<h1> <img src="${flags.svg}" alt="${
+          flags.alt
+        }" width="100" height="60"> ${name.common} </h1>
       <p> Capital: ${capital} </P>
       <p> Population: ${population}</P>
-      <p> Languages:${languages} </P>
+      <p> Languages: ${Object.values(languages)} </P>
     `;
       })
       .join('');
