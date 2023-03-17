@@ -5,7 +5,7 @@ import { fetchCountries } from './js/fetchCountries';
 
 const DEBOUNCE_DELAY = 300;
 
-inputEL = document.querySelector('#search-box');
+// inputEL = document.querySelector('#search-box');
 listEl = document.querySelector('.country-list');
 countryInfoEl = document.querySelector('.country-info');
 
