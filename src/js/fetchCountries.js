@@ -7,7 +7,7 @@ export default function fetchCountries(name) {
 
   return fetch(`${BASE_URL}${name}?${searchParams}`)
     .then(response => response.json())
-    .then((data) => data)
+    .then(data => data)
     .catch(error => {
       console.error(error);
     });
