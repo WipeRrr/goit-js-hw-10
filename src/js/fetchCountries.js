@@ -1,4 +1,4 @@
-export default function fetchCountries(name) {
+export const fetchCountries = name => {
   const BASE_URL = 'https://restcountries.com/v3.1/name/';
 
   const searchParams = new URLSearchParams({
@@ -11,4 +11,4 @@ export default function fetchCountries(name) {
     .catch(error => {
       console.error(error);
     });
-}
+};
