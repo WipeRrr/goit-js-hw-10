@@ -10,8 +10,6 @@ body {
   background-color: #fafafa;
   color: #212121;
   line-height: 1.5;
-  background-image: url('https://pixabay.com/get/g03f9a1307f6224e1fba3d847796201c3255ab7b067ba876be8e392bfc6b997f4e7faebc356c9502db9dbaca6a15a0652.svg');
-  background-size: cover;
 }
 
 #search-box {
