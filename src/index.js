@@ -14,12 +14,12 @@ inputEL.addEventListener('input', debounce(onSearch, DEBOUNCE_DELAY));
 function onSearch(e) {
   e.preventDefault();
   const name = e.target.value.trim();
+  clearContainer(listEl);
+  clearContainer(countryInfoEl);
   if (name === '') {
-    clearContainer(listEl);
-    clearContainer(countryInfoEl);
     return;
   }
-  clearContainer(listEl);
+
   fetchCountries(name)
     .then(renderList)
     .catch(error => {
@@ -32,7 +32,7 @@ function renderList(data) {
     Notify.info('Too many matches found. Please enter a more specific name.');
     return;
   }
-  clearContainer(countryInfoEl);
+
   const markupList = data
     .map(({ name, flags }) => {
       return `<li><img src="${flags.png}" alt="${flags.alt}" width="60" height="40">${name.common}</li>`;
